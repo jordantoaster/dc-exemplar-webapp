@@ -1,8 +1,4 @@
-- Postgres DB.
-- Run DC not as a web app, but standalone code.
-- Debug running in the container.
-- README on setup, explaining components, how to do certain things.
-- read -> https://docs.docker.com/compose/production/
-- Running unit tests in container based development.
-- environment variables.
-- Add migrations to the DB to create and manage tables.
+- Run DC not as a web app, but standalone code - what needs to change? does this even matter?
+- Add migrations to the DB to create and manage tables - manage.py
+- Add a PGadmin container to access db.
+- wrap flask around gunicorn?

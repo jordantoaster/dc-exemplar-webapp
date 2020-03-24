@@ -3,7 +3,7 @@ services:
   web:
     build: . # Use the Dockerfile in this directory to build the image for this service.
     ports:
-      - "5000:5000"
+      - "${WEBAPP_PORT}:${WEBAPP_PORT}"
     volumes:
       - .:/src # Mounts the project directory (current directory) on the host to /code inside the container.
     environment:
@@ -13,4 +13,4 @@ services:
   db:
     image: postgres
     ports:
-      - "8001:5432" # web’s application code could connect to the URL postgres://db:5432 and start using the Postgres database
+      - "${DB_PORT}:${DB_PORT}" # web’s application code could connect to the URL postgres://db:5432 and start using the Postgres database
