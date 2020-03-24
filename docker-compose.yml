@@ -1,0 +1,12 @@
+version: '3' # This integer specifies the version of DC you want to use.
+services:
+  web:
+    build: . # Use the Dockerfile in this directory to build the image for this service.
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/code # Mounts the project directory (current directory) on the host to /code inside the container.
+    environment:
+      FLASK_ENV: development # Run in development mode and reload the code on change
+  redis:
+    image: "redis:alpine" # Pull a stock image to run Redis.
