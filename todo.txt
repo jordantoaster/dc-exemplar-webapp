@@ -1,4 +1,1 @@
-- Run DC not as a web app, but standalone code - what needs to change? does this even matter?
-- Add migrations to the DB to create and manage tables - manage.py
-- Add a PGadmin container to access db.
-- wrap flask around gunicorn?
+- Review how hmlr front end and api runs tests etc in a docker.

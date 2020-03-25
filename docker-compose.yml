@@ -5,12 +5,24 @@ services:
     ports:
       - "${WEBAPP_PORT}:${WEBAPP_PORT}"
     volumes:
-      - .:/src # Mounts the project directory (current directory) on the host to /code inside the container.
+      - ./src:/src # Mounts the src directory (current directory) on the host to /code inside the container.
     environment:
       FLASK_ENV: development # Run in development mode and reload the code on change
+      POSTGRES_DATABASE_URI: "postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}"
+    depends_on:
+      - db
+
   redis:
     image: "redis:alpine" # Pull a stock image to run Redis.
+
   db:
     image: postgres
+    restart: always
     ports:
-      - "${DB_PORT}:${DB_PORT}" # web’s application code could connect to the URL postgres://db:5432 and start using the Postgres database
+     - "${POSTGRES_PORT}:${POSTGRES_PORT}" # web’s application code could connect to the URL postgres://db:5432 and start using the Postgres database
+    volumes:
+    - ./db:/docker-entrypoint-initdb.d/ # Mount DB init script to be initialisation on startup.
+    environment:
+      POSTGRES_USER: "${POSTGRES_USER}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+      POSTGRES_DB: "${POSTGRES_DB}"

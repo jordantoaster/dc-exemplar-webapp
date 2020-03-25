@@ -1,6 +1,8 @@
 import time
 import redis
 from flask import Flask
+import os
+import psycopg2
 
 app = Flask(__name__)
 cache = redis.Redis(host='redis', port=6379) # Standard Redis port, this is why its not defined in the DC file.
@@ -27,5 +29,11 @@ def hello():
     count: int = get_hit_count()
     return 'Hello from Docker! I have been seen {} times.\n'.format(count)
 
-def testable_dummy():
-    return 1
+@app.route('/db')
+def db_data():
+    POSTGRES_URI = os.environ['POSTGRES_DATABASE_URI']
+    conn = psycopg2.connect(POSTGRES_URI)
+    cur = conn.cursor()
+    cur.execute("""SELECT * FROM Persons WHERE PersonID = 1""")
+    row = cur.fetchone()
+    return 'Hello from Docker! I have this {} person.\n'.format(row)
