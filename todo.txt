@@ -1,9 +1,1 @@
-- Postgres DB.
-- Run DC not as a web app, but standalone code.
-- Develop the running container.
-- Debug running in the container.
-- README on setup, explaining components, how to do certain things.
-- Clean code - type hints etc.
-- networking - https://docs.docker.com/compose/networking/ (PG?)
-- read -> https://docs.docker.com/compose/production/
-- 
+- Review how hmlr front end and api runs tests etc in a docker.
