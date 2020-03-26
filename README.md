@@ -10,7 +10,7 @@ This repository demonstrates a basic use of docker-compose as a means for contai
 
 3. Run ``source env.sh``
 
-4. Run ``docker-compose build`` to build the services (web) as a cealn docker image.
+4. Run ``docker-compose build`` to build the services (web) as a clean docker image.
 
 5. Run ``docker-compose up`` to spin up the docker compose services.
 
